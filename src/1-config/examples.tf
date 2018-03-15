@@ -9,6 +9,16 @@ provider "google" {
   region      = "us-central1"
 }
 
-data "google_compute_address" "my_address" {
-  name = "foobar"
+data "google_compute_address" "static_address" {
+  name = "example-address"
+}
+
+variable "environment_tag" {
+  type        = "string"
+  default     = "staging"
+  description = "Value of the infrastructure environment tag"
+}
+
+output "cluster_endpoint" {
+  value = "${google_container_cluster.cluster.endpoint}"
 }
