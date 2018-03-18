@@ -12,6 +12,8 @@ provider "google" {
 }
 
 provider "kubernetes" {
+  version = "1.0.1"
+
   host     = "${google_container_cluster.primary.endpoint}"
   username = "${google_container_cluster.primary.master_auth.username}"
   password = "${google_container_cluster.primary.master_auth.password}"
