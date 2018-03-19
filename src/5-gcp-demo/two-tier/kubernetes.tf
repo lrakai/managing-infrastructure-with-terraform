@@ -1,7 +1,3 @@
-variable "wordpress_version" {
-  default = "4.7.3"
-}
-
 resource "kubernetes_secret" "mysql" {
   metadata {
     name = "mysql-pass"
