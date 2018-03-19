@@ -53,8 +53,6 @@ resource "kubernetes_persistent_volume_claim" "wordpress" {
         storage = "20Gi"
       }
     }
-
-    volume_name = "${kubernetes_persistent_volume.wordpress.metadata.0.name}"
   }
 }
 
@@ -72,6 +70,8 @@ resource "kubernetes_replication_controller" "wordpress" {
       app  = "wordpress"
       tier = "frontend"
     }
+
+    replicas = "${var.k8s_num_wp_replicas[terraform.workspace]}"
 
     template {
       container {
@@ -116,34 +116,6 @@ resource "kubernetes_replication_controller" "wordpress" {
         persistent_volume_claim {
           claim_name = "${kubernetes_persistent_volume_claim.wordpress.metadata.0.name}"
         }
-      }
-    }
-  }
-}
-
-resource "google_compute_disk" "wordpress" {
-  name = "wordpress-frontend"
-  type = "pd-ssd"
-  size = 20
-  zone = "${var.region}-a"
-}
-
-resource "kubernetes_persistent_volume" "wordpress" {
-  metadata {
-    name = "wordpress-pv"
-  }
-
-  spec {
-    capacity {
-      storage = "20Gi"
-    }
-
-    access_modes = ["ReadWriteOnce"]
-
-    persistent_volume_source {
-      gce_persistent_disk {
-        pd_name = "${google_compute_disk.wordpress.name}"
-        fs_type = "ext4"
       }
     }
   }

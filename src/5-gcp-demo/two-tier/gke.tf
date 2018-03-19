@@ -1,7 +1,7 @@
 resource "google_container_cluster" "primary" {
-  name               = "ca-k8s-cluster"
+  name               = "ca-gke-${terraform.workspace}-cluster"
   zone               = "${var.region}-a"
-  initial_node_count = "${var.gke_num_nodes}"
+  initial_node_count = "${var.gke_num_nodes[terraform.workspace]}"
 
   additional_zones = [
     "${var.region}-b",

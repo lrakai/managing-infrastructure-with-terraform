@@ -32,7 +32,8 @@ resource "google_sql_database_instance" "sql_master" {
 }
 
 resource "google_sql_database_instance" "sql_replica" {
-  name = "wp-${terraform.workspace}-replica"
+  name  = "wp-${terraform.workspace}-replica"
+  count = "${terraform.workspace == "prod" ? 1 : 0}"
 
   region               = "${var.region}"
   database_version     = "MYSQL_5_7"
