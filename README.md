@@ -2,6 +2,8 @@
 
 Resources used in the production of my "Managing Infrastructure With Terraform" course on [Cloud Academy](https://cloudacademy.com/cloud-trainers/logan-rakai/).
 
+![Dependency Graph](https://github.com/lrakai/managing-infrastructure-with-terraform/blob/master/src/5-gcp-demo/two-tier/graph.png?raw=true)
+
 ## Notes on the GCP Demo
 
 The passwords for the Cloud SQL database and GKE cluster have not been committed to version control. As a best practice, you should avoid checking sensitive information into version control.
