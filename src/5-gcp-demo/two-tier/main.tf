@@ -8,7 +8,7 @@ terraform {
 provider "google" {
   version = "~> 1.7"
   project = "cloud-academy-terraform"
-  region  = "us-central1"
+  region  = "${var.region}"
 }
 
 provider "kubernetes" {
