@@ -15,7 +15,7 @@ resource "google_sql_database_instance" "sql_master" {
         value = "0.0.0.0/0"
       }
 
-      require_ssl  = "${var.require_ssl}"
+      require_ssl  = "${var.sql_require_ssl}"
       ipv4_enabled = true
     }
 
@@ -39,7 +39,7 @@ resource "google_sql_database_instance" "sql_replica" {
   master_instance_name = "${google_sql_database_instance.sql_master.name}"
 
   replica_configuration {
-    connect_retry_interval = "${var.connect_retry_interval}"
+    connect_retry_interval = "${var.sql_connect_retry_interval}"
     failover_target        = true
   }
 

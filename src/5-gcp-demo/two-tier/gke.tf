@@ -1,7 +1,7 @@
 resource "google_container_cluster" "primary" {
   name               = "marcellus-wallace"
   zone               = "us-central1-a"
-  initial_node_count = "${var.num_gke_nodes}"
+  initial_node_count = "${var.gke_num_nodes}"
 
   additional_zones = [
     "us-central1-b",

@@ -30,12 +30,12 @@ variable "sql_connect_retry_interval" {
   description = "The number of seconds between connect retries."
 }
 
-variable "sql_zone_master" {
+variable "sql_master_zone" {
   default     = "a"
   description = "Zone of the Cloud SQL master (a, b, ...)"
 }
 
-variable "sql_zone_replica" {
+variable "sql_replica_zone" {
   default     = "b"
   description = "Zone of the Cloud SQL replica (a, b, ...)"
 }
@@ -61,7 +61,6 @@ variable "gke_master_user" {
 }
 
 variable "gke_master_pass" {
-  default     = "1_Cloud_Academy!"
   description = "Username to authenticate with the k8s master"
 }
 
