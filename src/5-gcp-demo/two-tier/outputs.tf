@@ -6,17 +6,12 @@ output "master_instance_sql_ipv4" {
 
 # GKE outputs
 output "endpoint" {
-  value = "${google_container_cluster.primary.endpoint}"
+  value       = "${google_container_cluster.primary.endpoint}"
+  description = "Endpoint for accessing the master node"
 }
 
-output "client_certificate" {
-  value = "${google_container_cluster.primary.master_auth.0.client_certificate}"
-}
-
-output "client_key" {
-  value = "${google_container_cluster.primary.master_auth.0.client_key}"
-}
-
-output "cluster_ca_certificate" {
-  value = "${google_container_cluster.primary.master_auth.0.cluster_ca_certificate}"
+# k8s outputs
+output "lb_ip" {
+  value       = "${kubernetes_service.wordpress.load_balancer_ingress.0.ip}"
+  description = "IP address of the WordPress frontend load balancer"
 }
